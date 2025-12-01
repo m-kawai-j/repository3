@@ -2,7 +2,7 @@
 FROM eclipse-temurin:21-jdk-alpine
 
 # 2. JARファイルパスの指定
-ARG JAR_FILE=target/*.jar
+ARG JAR_FILE=target/target/db_test-0.0.1-SNAPSHOT.jar
 
 # 3. JARファイルをコンテナ内にコピー
 COPY ${JAR_FILE} app.jar
