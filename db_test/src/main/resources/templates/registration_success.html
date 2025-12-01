@@ -8,8 +8,8 @@
 <body>
     <h2>登録完了</h2>
     <p th:text="${message}"></p>
-    <a href="/register">続けて登録する</a>
-	<a href="@{/list}">登録済み一覧表示</a>
+    <a th:href="@{/register}">続けて登録する</a>
+	<a th:href="@{/list}">登録済み一覧表示</a>
 	<a th:href="@{/}">TOPに戻る</a>
 </body>
 </html>
