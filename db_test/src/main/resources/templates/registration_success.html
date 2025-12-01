@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="ja" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+	<link rel="stylesheet" type="text/css" th:href="@{/style.css}">
+    <title>登録完了</title>
+</head>
+<body>
+    <h2>登録完了</h2>
+    <p th:text="${message}"></p>
+    <a href="/register">続けて登録する</a>
+	<a href="@{/list}">登録済み一覧表示</a>
+	<a th:href="@{/}">TOPに戻る</a>
+</body>
+</html>

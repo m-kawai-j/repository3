@@ -1,0 +1,97 @@
+@charset "UTF-8";
+/* -------------------------------------------
+   CSS: 乱世の威厳スタイル
+   ------------------------------------------- */
+
+/* 全体設定: 落ち着いた背景と力強いフォント */
+body {
+    background-color: #121212; /* 暗い背景（威厳） */
+    color: #E0E0E0; /* 明るい文字色 */
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    margin: 40px;
+    line-height: 1.6;
+}
+
+/* ヘッダー/タイトル: メインカラーの適用 */
+h1, h2 {
+    border-bottom: 3px solid #005691; /* 力強い深みのある青のアンダーライン */
+    padding-bottom: 10px;
+    color: #C0C0C0; /* やや明るい灰色で重厚感を出す */
+    letter-spacing: 1px;
+}
+
+/* リンク/ボタン: 赤と青のコントラスト */
+a {
+    color: #4CAF50; /* アクセントの緑（シアン系） */
+    text-decoration: none;
+    transition: color 0.3s;
+}
+
+a:hover {
+    color: #FF5722; /* ホバーで燃えるような赤に変化 */
+}
+
+/* フォームのスタイル */
+input[type="text"], button, select {
+    padding: 10px 15px;
+    margin: 8px 0;
+    display: inline-block;
+    border: 1px solid #333;
+    border-radius: 4px;
+    box-sizing: border-box;
+    background-color: #282828; /* 暗い入力欄 */
+    color: #E0E0E0;
+    font-size: 16px;
+}
+
+/* 登録ボタンのスタイル (力強い赤) */
+button[type="submit"] {
+    background-color: #D32F2F; /* 深みのある赤 */
+    color: white;
+    font-weight: bold;
+    cursor: pointer;
+    border: none;
+    transition: background-color 0.3s;
+}
+
+button[type="submit"]:hover {
+    background-color: #FF5722; /* ホバーで明るい赤に */
+}
+
+/* テーブルのスタイル (一覧表示) */
+table {
+    width: 80%; /* 幅を広めに */
+    border-collapse: collapse; /* 線を重ねる */
+    margin-top: 20px;
+}
+
+th, td {
+    padding: 12px 15px;
+    text-align: left;
+    border-bottom: 1px solid #3A3A3A; /* 暗い線で区切りを強調 */
+}
+
+th {
+    background-color: #004D80; /* 見出しには深みのある青 */
+    color: white;
+    font-weight: bold;
+    text-transform: uppercase;
+}
+
+/* テーブルの行のホバー効果 */
+tr:hover {
+    background-color: #212121; /* ホバーでさらに暗く */
+}
+
+/* トップページのリスト */
+ul {
+    list-style-type: none; /* リストの点を消す */
+    padding: 0;
+}
+
+ul li {
+    margin: 10px 0;
+    padding: 8px 0;
+    border-left: 5px solid #005691; /* 青のアクセントライン */
+    padding-left: 15px;
+}
