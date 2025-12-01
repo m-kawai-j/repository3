@@ -1,18 +1,33 @@
-# 1. ベースイメージ: Java 21の軽量なJDKイメージを使用
-FROM eclipse-temurin:21-jdk-alpine
+# ==========================================================
+# STAGE 1: ビルダー (JARファイル生成用)
+# ==========================================================
+FROM maven:3.9.6-eclipse-temurin-21-alpine AS builder
 
-# 2. JARファイルパスの指定
-ARG JAR_FILE=target/target/db_test-0.0.1-SNAPSHOT.jar
+# 作業ディレクトリを設定
+WORKDIR /app
 
-# 3. JARファイルをコンテナ内にコピー
-COPY ${JAR_FILE} app.jar
+# ソースコードをすべてコピー
+# (pom.xmlがルートにない場合は、ここでパスを調整)
+COPY . .
 
-# 4. ★【修正点 1】実行ユーザーを非ルートユーザーに切り替えます★
+# MavenでJARファイルをビルド
+# Renderのビルド環境では、-Dmaven.test.skip=trueでテストをスキップすることが推奨されます
+RUN mvn clean package -DskipTests
+
+# ==========================================================
+# STAGE 2: 最終実行環境 (軽量なJREのみ)
+# ==========================================================
+FROM eclipse-temurin:21-jre-alpine
+
+# 実行ユーザーを非ルートユーザーに切り替え (セキュリティ強化)
 USER daemon
 
-# 5. ★【修正点 2】実行コマンドの設定（Render環境変数を優先させる）★
-# Javaコマンド実行時に、ポート設定に環境変数PORTを明示的に使用するように指定します
-ENTRYPOINT ["java", "-Dserver.port=${PORT}", "-jar", "/app.jar"]
-
-# 6. ポートの公開
+# ポートの公開 (Renderでは自動でポートが設定されるが、ドキュメントとして残す)
 EXPOSE 8080
+
+# STAGE 1で生成されたJARファイルをコピー
+# (ワイルドカードではなく、正確なパスを使います)
+COPY --from=builder /app/target/db_test-0.0.1-SNAPSHOT.jar app.jar
+
+# 実行コマンドの設定 (Render環境変数PORTを優先)
+ENTRYPOINT ["java", "-Dserver.port=${PORT}", "-jar", "/app.jar"]
