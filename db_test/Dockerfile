@@ -1,17 +1,18 @@
-# 1. ベースイメージ: Java 21の軽量なJDKイメージを使用します
+# 1. ベースイメージ: Java 21の軽量なJDKイメージを使用
 FROM eclipse-temurin:21-jdk-alpine
 
 # 2. JARファイルパスの指定
-# MavenでビルドされるJARファイル名に合わせてください
-# プロジェクト名がdb_testなら、ターゲットファイル名は通常 db_test-0.0.1-SNAPSHOT.jar です
-ARG JAR_FILE=target/db_test-0.0.1-SNAPSHOT.jar
+ARG JAR_FILE=target/*.jar
 
 # 3. JARファイルをコンテナ内にコピー
 COPY ${JAR_FILE} app.jar
 
-# 4. 実行コマンドの設定
-# コンテナ起動時にSpring Bootアプリケーション（app.jar）を実行します
-ENTRYPOINT ["java", "-jar", "/app.jar"]
+# 4. ★【修正点 1】実行ユーザーを非ルートユーザーに切り替えます★
+USER daemon
 
-# 5. ポートの公開 (これはドキュメントとしてのみ。Renderは自動でマップします)
+# 5. ★【修正点 2】実行コマンドの設定（Render環境変数を優先させる）★
+# Javaコマンド実行時に、ポート設定に環境変数PORTを明示的に使用するように指定します
+ENTRYPOINT ["java", "-Dserver.port=${PORT}", "-jar", "/app.jar"]
+
+# 6. ポートの公開
 EXPOSE 8080
