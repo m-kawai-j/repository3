@@ -20,10 +20,15 @@ public class Test_table {
 	private int id;
 	private String name;
 	private String organization;
+	@Column(name = "buryoku")
 	private int buryoku;
+	@Column(name = "chiryoku")
 	private int chiryoku;
+	@Column(name = "tousotsu")
 	private int tousotsu;
+	@Column(name = "miryoku")
 	private int miryoku;
+	@Column(name = "seimu")
 	private int seimu;
 
 }
