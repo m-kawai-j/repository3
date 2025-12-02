@@ -14,12 +14,25 @@
                 <th>ID</th>
                 <th>名前</th>
 				<th>組織</th>
+				 <th>武力</th>
+                <th>知力</th>
+				<th>魅力</th>
+				<th>統率</th>
+				<th>政務</th>
             </tr>
         </thead>
         <tbody>
             <tr th:each="user : ${users}">
                 <td th:text="${user.id}">ID</td> <td th:text="${user.name}">名前</td>
 				<td th:text="${user.organization}">組織</td> </tr>
+				<td th:text="${user.name}">名前</td>
+				<td th:text="${user.organization}">組織</td> </tr>
+				<td th:text="${user.name}">名前</td>
+				<td th:text="${user.organization}">組織</td> </tr>
+
+
+
+			
         </tbody>
     </table>
     
