@@ -2,30 +2,48 @@
 <html lang="ja" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-	<link rel="stylesheet" type="text/css" th:href="@{/style.css}">
-    <title>ユーザー登録フォーム</title>
+    <link rel="stylesheet" type="text/css" th:href="@{/style.css}">
+    <title>ユーザー登録・更新フォーム</title>
 </head>
 <body>
-    <h2>登録フォーム</h2>
-    <form action="#" th:action="@{/register}" th:object="${test_table}" method="post">
+    <h2>
+        <span th:if="${test_table.id == null or test_table.id == 0}">新規登録フォーム</span>
+        <span th:unless="${test_table.id == null or test_table.id == 0}">ユーザー情報更新フォーム</span>
+    </h2>
+    
+    <form th:action="${test_table.id == null or test_table.id == 0} ? @{/register} : @{/edit}" 
+          th:object="${test_table}" 
+          method="post"> 
+        
+        <input type="hidden" th:field="*{id}">
+        
         <label for="name">名前:</label>
         <input type="text" th:field="*{name}" id="name" required><br>
-		<label for="organization">組織:</label>
-		        <input type="text" th:field="*{organization}" id="organization" required><br>
-		<label for="buryoku">武力:</label>
-		        <input type="number" th:field="*{buryoku}" id="buryoku" required><br>
-		<label for="chiryoku">知力:</label>
-		        <input type="number" th:field="*{chiryoku}" id="chiryoku" required><br>
-		<label for="miryoku">魅力:</label>
-		        <input type="number" th:field="*{miryoku}" id="miryoku" required><br>
-		<label for="tousotsu">統率:</label>
-		        <input type="number" th:field="*{tousotsu}" id="tousotsu" required><br>
-		<label for="seimu">政務:</label>
-		        <input type="number" th:field="*{seimu}" id="seimu" required><br>
-		
-		
-        <button type="submit">登録</button>
+        
+        <label for="organization">組織:</label>
+        <input type="text" th:field="*{organization}" id="organization" required><br>
+        
+        <label for="buryoku">武力:</label>
+        <input type="number" th:field="*{buryoku}" id="buryoku" required><br>
+        
+        <label for="chiryoku">知力:</label>
+        <input type="number" th:field="*{chiryoku}" id="chiryoku" required><br>
+        
+        <label for="miryoku">魅力:</label>
+        <input type="number" th:field="*{miryoku}" id="miryoku" required><br>
+        
+        <label for="tousotsu">統率:</label>
+        <input type="number" th:field="*{tousotsu}" id="tousotsu" required><br>
+        
+        <label for="seimu">政務:</label>
+        <input type="number" th:field="*{seimu}" id="seimu" required><br>
+        
+        <button type="submit" th:text="${test_table.id == null or test_table.id == 0} ? '新規登録' : 'この内容で更新'">
+            登録/更新
+        </button>
+
     </form>
-	<a th:href="@{/}">TOPに戻る</a>
+    
+    <a th:href="@{/}">TOPに戻る</a>
 </body>
 </html>
