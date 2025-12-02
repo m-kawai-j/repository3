@@ -7,6 +7,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.example.demo.domain.Test_table; // ★これを追加
 import com.example.demo.domain.UserRepository; // ★これを追加
+import java.util.Optional;
 
 @Service
 @Transactional
@@ -35,5 +36,14 @@ public class UserRegisterService {
         // Spring Data JPAのCrudRepository/JpaRepositoryが提供するfindAll()を使います
         return userRepository.findAll();
     
+    }
+
+    // ★ NEW: IDでユーザーを取得するメソッドを追加
+    public Test_table findById(Integer id) {
+        // Optionalを使って、データが存在しない場合に備えます。
+        // ここでは、データがなければ例外を投げるか、nullを返すかを選べますが、
+        // Optional.orElseThrow()でデータがないことを明示的に示しましょう。
+        return userRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("指定されたIDのユーザーが見つかりません。ID: " + id));
     }
 }
