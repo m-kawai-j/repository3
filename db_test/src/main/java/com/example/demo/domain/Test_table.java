@@ -20,6 +20,10 @@ public class Test_table {
 	private int id;
 	private String name;
 	private String organization;
-	
+	private int buryoku;
+	private int chiryoku;
+	private int tousotsu;
+	private int miryoku;
+	private int seimu;
 
 }
