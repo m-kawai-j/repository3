@@ -24,11 +24,12 @@
         <tbody>
             <tr th:each="user : ${users}">
                 <td th:text="${user.id}">ID</td> <td th:text="${user.name}">名前</td>
-				<td th:text="${user.organization}">組織</td> </tr>
-				<td th:text="${user.name}">名前</td>
-				<td th:text="${user.organization}">組織</td> </tr>
-				<td th:text="${user.name}">名前</td>
-				<td th:text="${user.organization}">組織</td> </tr>
+				<td th:text="${user.organization}">組織</td>
+				<td th:text="${user.buryoku}">武力</td>
+				<td th:text="${user.chiryoku}">知力</td>
+				<td th:text="${user.miryoku}">魅力</td>
+				<td th:text="${user.tousotu}">統率</td>
+		<td th:text="${user.seimu}">政務</td> </tr>
 
 
 
