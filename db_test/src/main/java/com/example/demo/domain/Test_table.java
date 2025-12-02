@@ -8,6 +8,7 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.Column;
 
 import lombok.Data;
 
@@ -23,12 +24,12 @@ public class Test_table {
 	@Column(name = "buryoku", nullable = true, columnDefinition = "integer default 0")
 	private Integer buryoku;
 	@Column(name = "chiryoku", nullable = true, columnDefinition = "integer default 0")
-	private integer chiryoku;
+	private Integer chiryoku;
 	@Column(name = "tousotsu", nullable = true, columnDefinition = "integer default 0")
-	private integer tousotsu;
+	private Integer tousotsu;
 	@Column(name = "miryoku", nullable = true, columnDefinition = "integer default 0")
-	private integer miryoku;
+	private Integer miryoku;
 	@Column(name = "seimu", nullable = true, columnDefinition = "integer default 0")
-	private integer seimu;
+	private Integer seimu;
 
 }
